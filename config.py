@@ -1,14 +1,19 @@
-SITE_NAME = '2018-CS109A'
+COURSE_NAME = 'CS109A'
 
-AUTHOR = ''
+AUTHOR = 'Pavlos Protopapas, Kevin Rader'
 
-SITEURL = ''
+SITEURL = 'https://harvard-iacs.github.io/2018-CS109A'
 
-GITHUB = ''
+GITHUB = 'https://github.com/Harvard-IACS/2018-CS109A'
 
-COLOR = '#A51C30'
+COLOR = '#8996A0'
 
-NAVBAR_LINKS = []
+MENUITEMS = [
+    ('Syllabus', 'pages/syllabus.html'),
+    ('Schedule', 'pages/schedule.html'),
+    ('Materials', 'pages/materials.html'),
+    ('Sections', 'category/sections.html')
+]
 
 PATH = 'content'
 
@@ -38,11 +43,15 @@ CATEGORIES_SAVE_AS = ''
 
 ARCHIVES_SAVE_AS = ''
 
-TAGS_SAVE_AS = ''
+ARTICLE_SAVE_AS = '{category}/{slug}/index.html'
 
-ARTICLE_SAVE_AS = '{category}/{slug}.html'
+ARTICLE_URL = '{category}/{slug}/'
 
 AUTHOR_URL = ''
+
+AUTHOR_SAVE_AS = ''
+
+INDEX_SAVE_AS = 'pages/materials.html'
 
 THEME_STATIC_DIR = 'style'
 
@@ -50,14 +59,25 @@ DELETE_OUTPUT_DIRECTORY = True
 
 MARKUP = ['md', 'ipynb']
 
-PLUGIN_PATHS = ['./plugins']
+PLUGIN_PATHS = ['plugins']
 
-PLUGINS = ['ipynb.markup', 'dateish']
+PLUGINS = ['ipynb.markup', 'tipue_search']
 
 IGNORE_FILES = ['.ipynb_checkpoints']
-
-DATEISH_PROPERTIES = ['due']
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
 
+STATIC_PATHS = ['lectures', 'labs', 'homeworks', 'a-sections', 'sections', 'wiki', 'images', 'projects', 'slides', 'data']
+
+DIRECT_TEMPLATES = ['index', 'category', 'tags', 'search']
+
+import re
+
+JINJA_FILTERS = {
+    'original_content': lambda x: re.search(r"content/.*", x).group(0)
+}
+
+USE_FOLDER_AS_CATEGORY = False
+
+IGNORE_FILES = ['README.md']
